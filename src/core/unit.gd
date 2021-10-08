@@ -67,11 +67,11 @@ func _ready():
 func goto(position, tolerance = 2):
   var diff : Vector2 = position - transform.origin
   if diff.length() > tolerance:
-    velocity = diff.normalized() * speed
-    return false
+	velocity = diff.normalized() * speed
+	return false
   else:
-    velocity = Vector2.ZERO
-    return true
+	velocity = Vector2.ZERO
+	return true
 
 func _physics_process(_delta):
   velocity = move_and_slide(velocity, Vector2.UP)
@@ -80,12 +80,12 @@ func _physics_process(_delta):
 # set a new target, either a position or another unit
 func set_target(new_target):
   if typeof(target) == TYPE_OBJECT:
-    target.disconnect("died", self, "target_killed")
+	target.disconnect("died", self, "target_killed")
   if state == ATTACKING:
-    interrupt_attack()
+	interrupt_attack()
   target = new_target
   if typeof(target) == TYPE_OBJECT:
-    target.connect("died", self, "target_killed")
+	target.connect("died", self, "target_killed")
 
 # check if unit is within distance of point
 func is_within_range(point : Vector2, distance):
@@ -96,34 +96,34 @@ func take_damage(val):
   health -= max((val - defense), 1)
   emit_signal("update_current_health", health)
   if health <= 0:
-    interrupt_attack()
-    emit_signal("died", self)
-    state = DEAD
-    velocity = Vector2.ZERO
-    $CollisionShape2D.set_disabled(true)
-    $UnitSelectionArea/CollisionShape2D.set_disabled(true)
-    play_animation("death")
+	interrupt_attack()
+	emit_signal("died", self)
+	state = DEAD
+	velocity = Vector2.ZERO
+	$CollisionShape2D.set_disabled(true)
+	$UnitSelectionArea/CollisionShape2D.set_disabled(true)
+	play_animation("death")
 
 # deal damage to current target
 func deal_damage_to_target():
   if typeof(target) == TYPE_OBJECT:
-    target.take_damage(attack)
+	target.take_damage(attack)
 
 # interrupt attack
 func interrupt_attack():
   state = NORMAL
   if target != null and typeof(target) == TYPE_OBJECT:
-    target.disconnect("died", self, "target_killed")
-    target = null
+	target.disconnect("died", self, "target_killed")
+	target = null
   stop_all_animation()
 
 # triggered by target if it dies to stop this unit from attacking
 func target_killed(_unit):
   if state == ATTACKING:
-    interrupt_attack()
+	interrupt_attack()
   else:
-    target = null
-    velocity = Vector2.ZERO
+	target = null
+	velocity = Vector2.ZERO
 
 # triggerd via animation node when the weapon swing happens to deal
 # damage to target
@@ -134,7 +134,7 @@ func handle_hit():
 # back to normal to allow control of the unit
 func handle_attack_finished():
   if state == ATTACKING:
-    state = NORMAL
+	state = NORMAL
 
 # triggered by animation node when the death animation finishes
 func handle_death():
@@ -144,11 +144,11 @@ func handle_death():
 func play_animation(anim_name):
   $BodyWithAnimation.set_direction(velocity.normalized())
   if "attack" in anim_name:
-    $BodyWithAnimation.set_animation("attack")
+	$BodyWithAnimation.set_animation("attack")
   elif "walk" in anim_name:
-    $BodyWithAnimation.set_animation("walk")
+	$BodyWithAnimation.set_animation("walk")
   elif "death" == anim_name:
-    $BodyWithAnimation.set_animation("death")
+	$BodyWithAnimation.set_animation("death")
 
 func stop_all_animation():
   $BodyWithAnimation.stop()
@@ -156,23 +156,24 @@ func stop_all_animation():
 # Update animation. Called at the end of _physics_process
 func update_animation():
   if state == NORMAL:
-    if velocity.length() < 10:
-      return
-    if abs(velocity.x) > abs(velocity.y):
-      if velocity.x > 0.1:
-        play_animation("walk_right")
-      elif velocity.x < -0.1:
-        play_animation("walk_left")
-    else:
-      if velocity.y > 0.1:
-        play_animation("walk_down")
-      elif velocity.y < -0.1:
-        play_animation("walk_up")
+	if velocity.length() < 10:
+	  return
+	if abs(velocity.x) > abs(velocity.y):
+	  if velocity.x > 0.1:
+		play_animation("walk_right")
+	  elif velocity.x < -0.1:
+		play_animation("walk_left")
+	else:
+	  if velocity.y > 0.1:
+		play_animation("walk_down")
+	  elif velocity.y < -0.1:
+		play_animation("walk_up")
 
 
 func set_selected(is_selected : bool) -> void:
   animated_body.set_selected(is_selected)
 
+<<<<<<< Updated upstream
 
 func get_actions():
   return ["Destroy"]
@@ -183,3 +184,34 @@ func perform_action(action, _world):
     state = DEAD
     emit_signal("died", self)
     play_animation("death")
+=======
+var action_list = [Action.new(Action.STOP),
+				   Action.new(Action.MOVE, Action.TARGET_POSITION),
+				   Action.new(Action.ATTACK, Action.TARGET_ANY),
+				   Action.new(Action.MOVE_AND_ATTACK, Action.TARGET_POSITION),
+				   Action.new(Action.DEFEND, Action.TARGET_FRIEND),
+				   Action.new(Action.DIE),
+				   Action.new(Action.CHANGE_STANCE, Action.TARGET_NONE,
+					 [Action.new(Action.STANCE_DEFENSIVE),
+					  Action.new(Action.STANCE_OFFENSIVE),
+					  Action.new(Action.STANCE_PASSIVE)])]
+
+func get_actions():
+  return action_list
+
+func perform_action(action_id : int, _world, new_target = null):
+  match action_id:
+	Action.DIE:
+	  velocity = Vector2.ZERO
+	  state = DEAD
+	  emit_signal("died", self)
+	  play_animation("death")
+	Action.MOVE:
+	  assert(typeof(new_target) == TYPE_VECTOR2)
+	  set_target(new_target)
+	Action.ATTACK:
+	  assert(typeof(new_target) == TYPE_OBJECT)
+	  set_target(new_target)
+	_:
+	  pass
+>>>>>>> Stashed changes

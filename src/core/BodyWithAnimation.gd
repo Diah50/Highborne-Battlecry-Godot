@@ -29,7 +29,7 @@ func _ready():
 func set_head_texture(texture):
   head_texture = texture
   if is_inside_tree():
-    $head.texture = texture
+	$head.texture = texture
 
 func get_head_texture():
   return head_texture
@@ -37,7 +37,7 @@ func get_head_texture():
 func set_body_texture(texture):
   body_texture = texture
   if is_inside_tree():
-    $body.texture = texture
+	$body.texture = texture
 
 func get_body_texture():
   return body_texture
@@ -45,7 +45,7 @@ func get_body_texture():
 func set_left_texture(texture):
   left_texture = texture
   if is_inside_tree():
-    $item_l.texture = texture
+	$item_l.texture = texture
 
 func get_left_texture():
   return left_texture
@@ -53,7 +53,7 @@ func get_left_texture():
 func set_right_texture(texture):
   right_texture = texture
   if is_inside_tree():
-    $item_r.texture = texture
+	$item_r.texture = texture
 
 func get_right_texture():
   return right_texture
@@ -74,15 +74,15 @@ func set_direction(dir : Vector2):
 func set_animation(anim_name):
   var playback = $AnimationTree.get("parameters/playback")
   match anim_name:
-    "walk":
-      playback.travel("walk")
-    "attack":
-      if playback.get_current_node() == "attackonehand":
-        playback.start("attackonehand")
-      else:
-        playback.travel("attackonehand")
-    "death":
-      playback.travel("death")
+	"walk":
+	  playback.travel("walk")
+	"attack":
+	  if playback.get_current_node() == "attackonehand":
+		playback.start("attackonehand")
+	  else:
+		playback.travel("attackonehand")
+	"death":
+	  playback.travel("death")
 
 # these are called from animation player method track
 func report_hit():

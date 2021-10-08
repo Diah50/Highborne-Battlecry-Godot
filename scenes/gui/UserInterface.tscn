@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=10 format=2]
+=======
+[gd_scene load_steps=17 format=2]
+>>>>>>> Stashed changes
 
 [ext_resource path="res://graphics/interface/foods icon.png" type="Texture" id=1]
 [ext_resource path="res://graphics/interface/idle icon.png" type="Texture" id=2]
@@ -9,15 +13,60 @@
 [ext_resource path="res://graphics/interface/population icon.png" type="Texture" id=7]
 [ext_resource path="res://scenes/gui/ActionPanel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui/UserInterface.gd" type="Script" id=9]
+<<<<<<< Updated upstream
+=======
+[ext_resource path="res://graphics/interface/spellbook icon.png" type="Texture" id=10]
+[ext_resource path="res://graphics/interface/backpack icon.png" type="Texture" id=11]
+[ext_resource path="res://scenes/gui/UnitDetailsPanel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://graphics/k'inh humans assets/k'inh interface/k'inh human ui long panel.png" type="Texture" id=13]
+[ext_resource path="res://graphics/k'inh humans assets/k'inh interface/k'inh human ui panel.png" type="Texture" id=14]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.901961, 0.454902, 0.0235294, 1 )
+>>>>>>> Stashed changes
 
 [node name="UserInterface" type="CanvasLayer"]
 script = ExtResource( 9 )
 
+<<<<<<< Updated upstream
 [node name="UnitCommandPanel" type="Panel" parent="."]
 margin_left = 467.482
 margin_top = 812.5
 margin_right = 1279.48
 margin_bottom = 1049.5
+=======
+[node name="GuiArea" type="Control" parent="."]
+margin_left = 1.7818
+margin_top = 807.154
+margin_right = 401.782
+margin_bottom = 1027.15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="k\'inh human ui panel" type="Sprite" parent="."]
+position = Vector2( 246.348, 933.589 )
+scale = Vector2( 0.221801, 0.135766 )
+texture = ExtResource( 14 )
+offset = Vector2( -0.00012207, -134.303 )
+
+[node name="ActionPanel" parent="k\'inh human ui panel" instance=ExtResource( 8 )]
+margin_left = -868.438
+margin_top = -1059.32
+margin_right = -401.438
+margin_bottom = -817.315
+rect_min_size = Vector2( 400, 220 )
+mouse_filter = 1
+
+[node name="UnitCommandPanel" type="Panel" parent="."]
+material = SubResource( 1 )
+margin_left = 501.0
+margin_top = 803.0
+margin_right = 1279.0
+margin_bottom = 1049.0
+>>>>>>> Stashed changes
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -26,16 +75,27 @@ __meta__ = {
 position = Vector2( -467.482, -812.5 )
 
 [node name="TextureRect" type="TextureRect" parent="UnitCommandPanel/Sprite"]
-margin_left = 460.0
-margin_top = 802.0
-margin_right = 650.0
-margin_bottom = 1047.0
+margin_left = 530.625
+margin_top = 814.841
+margin_right = 720.625
+margin_bottom = 1059.84
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+<<<<<<< Updated upstream
 [node name="ActionPanel" parent="." instance=ExtResource( 8 )]
 margin_top = 831.0
+=======
+[node name="k\'inh human ui long panel" type="Sprite" parent="UnitCommandPanel/Sprite/TextureRect"]
+position = Vector2( 281.201, 116.801 )
+scale = Vector2( 0.220328, 0.129263 )
+texture = ExtResource( 13 )
+
+[node name="UnitDetailsPanel" parent="UnitCommandPanel" instance=ExtResource( 12 )]
+anchor_left = 1.0
+margin_left = -308.0
+>>>>>>> Stashed changes
 
 [node name="Panel" type="Panel" parent="."]
 margin_left = 1352.25
@@ -46,6 +106,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+<<<<<<< Updated upstream
 [node name="pop num" type="TextEdit" parent="Panel"]
 anchor_left = 0.234
 anchor_top = 0.093
@@ -55,6 +116,25 @@ margin_left = -22.284
 margin_top = -16.596
 margin_right = 17.952
 margin_bottom = 11.5
+=======
+[node name="k\'inh human ui panel2" type="Sprite" parent="Right Panel"]
+position = Vector2( 161.374, 133.652 )
+scale = Vector2( 0.221801, 0.135766 )
+texture = ExtResource( 14 )
+offset = Vector2( -0.00012207, -134.303 )
+
+[node name="pop num" type="TextEdit" parent="Right Panel"]
+anchor_left = 0.531
+anchor_top = 0.179
+anchor_right = 0.957
+anchor_bottom = 0.273
+margin_left = -119.685
+margin_top = -795.293
+margin_right = -163.381
+margin_bottom = -777.383
+rect_pivot_offset = Vector2( 185.184, 20 )
+text = "10/20"
+>>>>>>> Stashed changes
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -98,6 +178,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+<<<<<<< Updated upstream
 [node name="worker num3" type="TextEdit" parent="Panel"]
 anchor_left = 0.234
 anchor_top = 0.093
@@ -107,6 +188,19 @@ margin_left = 156.974
 margin_top = 189.011
 margin_right = 165.21
 margin_bottom = 217.107
+=======
+[node name="crystals num" type="TextEdit" parent="Right Panel"]
+anchor_left = 0.654
+anchor_top = 0.256
+anchor_right = 0.954
+anchor_bottom = 0.426
+margin_left = -2.19359
+margin_top = 0.0332985
+margin_right = -1.99362
+margin_bottom = 0.0832901
+rect_pivot_offset = Vector2( -58.142, 52.0806 )
+text = "100"
+>>>>>>> Stashed changes
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -211,10 +305,94 @@ position = Vector2( 203.358, 112.478 )
 scale = Vector2( 0.408871, 0.408871 )
 texture = ExtResource( 6 )
 
+<<<<<<< Updated upstream
 [node name="workers icon2" type="Sprite" parent="Panel"]
 position = Vector2( 203.358, 173.908 )
 scale = Vector2( 0.408871, 0.408871 )
 texture = ExtResource( 6 )
+=======
+[node name="backpack icon" type="Sprite" parent="Right Panel"]
+position = Vector2( 68.2001, 167.774 )
+scale = Vector2( 0.867188, 0.867188 )
+texture = ExtResource( 11 )
+
+[node name="spellbook icon" type="Sprite" parent="Right Panel"]
+position = Vector2( 171.79, 168.139 )
+scale = Vector2( 0.898438, 0.890625 )
+texture = ExtResource( 10 )
+
+[node name="Main Menu Panel" type="Panel" parent="Right Panel"]
+anchor_left = -0.404
+anchor_top = -1.297
+anchor_right = -0.125
+anchor_bottom = -1.19
+margin_left = 429.952
+margin_top = -470.673
+margin_right = 429.997
+margin_bottom = -470.502
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="Right Panel/Main Menu Panel"]
+margin_left = 12.0135
+margin_top = 2.00226
+margin_right = 98.0135
+margin_bottom = 22.0023
+text = "Main Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spellbook Panel" type="Panel" parent="Right Panel"]
+anchor_left = 0.0386856
+anchor_top = 0.186
+anchor_right = 0.317686
+anchor_bottom = 0.293
+margin_left = 140.609
+margin_top = -840.3
+margin_right = 140.655
+margin_bottom = -840.129
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit2" type="TextEdit" parent="Right Panel/Spellbook Panel"]
+margin_left = 14.6726
+margin_top = 2.76904
+margin_right = 100.673
+margin_bottom = 22.769
+text = "Diplomacy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spellbook Panel2" type="Panel" parent="Right Panel"]
+anchor_left = 0.037
+anchor_top = 0.186
+anchor_right = 0.316
+anchor_bottom = 0.293
+margin_left = 21.6305
+margin_top = -841.418
+margin_right = 21.6765
+margin_bottom = -841.247
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit3" type="TextEdit" parent="Right Panel/Spellbook Panel2"]
+margin_left = 14.5303
+margin_top = 2.55212
+margin_right = 100.53
+margin_bottom = 22.5521
+text = "Tech Tree"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+>>>>>>> Stashed changes
 
 [node name="workers icon3" type="Sprite" parent="Panel"]
 position = Vector2( 203.358, 241.332 )
