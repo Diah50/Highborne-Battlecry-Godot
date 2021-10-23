@@ -33,6 +33,7 @@ var armor = 1
 var magic_resist = 1
 onready var animated_body : BodyWithAnimation = $BodyWithAnimation
 onready var selection_area : Area2D = $UnitSelectionArea
+onready var health_bar : ProgressBar = $HealthBar
 
 var last_action = Action.NONE
 var flow_field : Astar.FlowField = null
@@ -86,6 +87,8 @@ func _ready():
 # warning-ignore:return_value_discarded
   anim_body.connect("death", self, "handle_death")
   set_team(team)
+  self.connect("update_current_health", health_bar, "set_current_health")
+  health_bar.set_max_health(max_health)
   
 func destination_unreachable(target_position):
   var delta : float = (target_position - position).length_squared()

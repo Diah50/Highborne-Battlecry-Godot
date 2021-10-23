@@ -1,36 +1,61 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/core/BodyWithAnimation.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/core/healthbar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/core/swordman.gd" type="Script" id=4]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=6]
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=7]
 resource_local_to_scene = true
 flags = 4
 load_path = "res://.import/family swordsman head spritesheet.png-3ddb82db356871101e5e82b8f49a4049.stex"
 
-[sub_resource type="StreamTexture" id=3]
+[sub_resource type="StreamTexture" id=8]
 resource_local_to_scene = true
 flags = 4
 load_path = "res://.import/family swordsman body spritesheet.png-e77f318b2ea7faf894b7d3f70d7ffbd7.stex"
 
-[sub_resource type="StreamTexture" id=4]
-resource_local_to_scene = true
-flags = 4
-load_path = "res://.import/rattan shield.png-ddd584cd9d3f667c615eec5e54eff66f.stex"
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0.721569, 0.164706, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="StreamTexture" id=5]
-resource_local_to_scene = true
-flags = 4
-load_path = "res://.import/k'inh sword.png-d3b2e7a9a507b7020c10372e23885313.stex"
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.792157, 0.12549, 0.12549, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=9]
 radius = 34.9279
 height = 118.355
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=10]
 radius = 65.3173
+
+[sub_resource type="StyleBoxFlat" id=11]
+resource_local_to_scene = true
+bg_color = Color( 0, 0.721569, 0.164706, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+resource_local_to_scene = true
+bg_color = Color( 0.792157, 0.12549, 0.12549, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
 
 [node name="swordman" type="KinematicBody2D"]
 script = ExtResource( 4 )
@@ -41,11 +66,11 @@ attack_range = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 5.25289, 2.07565 )
-shape = SubResource( 1 )
+shape = SubResource( 6 )
 
 [node name="BodyWithAnimation" parent="." instance=ExtResource( 1 )]
-head_texture = SubResource( 2 )
-body_texture = SubResource( 3 )
+head_texture = SubResource( 7 )
+body_texture = SubResource( 8 )
 left_texture = SubResource( 4 )
 right_texture = SubResource( 5 )
 
@@ -55,7 +80,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UnitSelectionArea"]
 position = Vector2( 0, -96.217 )
-shape = SubResource( 6 )
+shape = SubResource( 9 )
 
 [node name="Area2D" type="Area2D" parent="."]
 monitorable = false
@@ -63,4 +88,12 @@ collision_layer = 0
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 7 )
+shape = SubResource( 10 )
+
+[node name="HealthBar" parent="." instance=ExtResource( 2 )]
+margin_left = -78.8214
+margin_top = -241.368
+margin_right = 79.1786
+margin_bottom = -225.368
+custom_styles/fg = SubResource( 11 )
+custom_styles/bg = SubResource( 12 )
