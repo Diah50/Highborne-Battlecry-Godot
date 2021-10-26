@@ -51,3 +51,7 @@ func perform_action(action_id, world, _target):
 
 func set_selected(_is_selected : bool) -> void:
   pass
+
+
+func get_collision_shape():
+  return $CollisionShape2D.shape

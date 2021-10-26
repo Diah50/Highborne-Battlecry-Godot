@@ -40,10 +40,10 @@ position = Vector2( 1845.11, 3387.06 )
 team = 3
 
 [node name="building" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 1025.28, 875.412 )
+position = Vector2( 1025.28, 804.059 )
 
 [node name="Spearman2" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 1176.5, 1175.68 )
+position = Vector2( 1111.45, 853.239 )
 
 [node name="Spearman3" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 2140.03, 3810.42 )
@@ -60,6 +60,9 @@ team = 3
 [node name="Spearman6" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 1585.86, 3425.12 )
 team = 3
+
+[node name="building2" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 2301.28, 1512.06 )
 
 [node name="SelectionBox" type="Node2D" parent="."]
 script = ExtResource( 6 )

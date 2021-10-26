@@ -33,6 +33,13 @@ func _ready():
   add_child(camera)
   set_camera_limits()
   $FlowFieldDebug.tilemap = navtilemap.tilemap
+  
+  for child in $YSort.get_children():
+    if child is StaticBody2D:
+      print("Adding collision")
+      var shape = child.get_collision_shape()
+      navtilemap.tilemap.add_obstacle_from_collision_shape(child.position, shape)
+    
 
 func set_camera_limits():
   var map_limits = $TileMap.get_used_rect()
@@ -185,3 +192,4 @@ func update_gui() -> void:
   else:
     gui.reset_actions()
     gui.reset_unit_details()
+  gui.reset_unit_details()

@@ -104,6 +104,7 @@ singletons=[  ]
 [global]
 
 window=false
+indent=false
 
 [input]
 

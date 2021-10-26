@@ -83,21 +83,50 @@ class AstarTilemap:
   func is_in_bounds(id : int) -> bool:
     var tile = point_id_to_tile(id)
     return tile.x >= 0 and tile.x < size.x and tile.y >= 0 and tile.y < size.y
+  
+  # Add obstacle from a collision shape by setting weights of certain points to 0
+  func add_obstacle_from_collision_shape(position, shape : RectangleShape2D):
+    var extents = shape.extents
+    var aabb = Rect2(position - extents, extents * 2)
+    add_obstacle_from_aabb(aabb)
+      
+  # Add obstacle from Axis-aligned bounding box by setting weights of certain
+  # points to 0
+  func add_obstacle_from_aabb(aabb : Rect2):
+    var start_tile = point_id_to_tile(get_closest_point(aabb.position))
+    var end_tile = point_id_to_tile(get_closest_point(aabb.end))
+    print([start_tile, end_tile])
+    for x in range(start_tile.x, end_tile.x + 1):
+      for y in range(start_tile.y, end_tile.y + 1):
+        set_tile_weight(IntVec2.new(x, y), 0)
+    
   func _generate_tilemap() -> void:
     weights.resize(size.x * size.y)
     for point_id in range(weights.size()):
         weights[point_id] = 1
-  func get_tile_center(i, j) -> Vector2:
-    return Vector2(i * cell_size.x, j * cell_size.y)
+  func get_tile_center(tile) -> Vector2:
+    return Vector2(tile.x * cell_size.x, tile.y * cell_size.y)
   func get_closest_point(position : Vector2):
-# warning-ignore:narrowing_conversion
-# warning-ignore:narrowing_conversion
+    return tile_to_point_id(get_closest_tile(position))
+  func get_closest_tile(position):
     var tile = IntVec2.new()
     tile.x = position.x  / cell_size.x
     tile.y = position.y  / cell_size.y
     tile.x = min(max(0, tile.x), size.x - 1)
     tile.y = min(max(0, tile.y), size.y - 1)
-    return tile_to_point_id(tile)
+    return tile
+  func get_closest_points_with_weights(position : Vector2):
+    var tile = get_closest_tile(position)
+    var tiles = [[tile, position.distance_to(get_tile_center(tile))]]
+    var dist_x = position.x - tile.x * cell_size.x
+    var dist_y = position.y - tile.y * cell_size.y
+    var tile_x = tile.x + sign(dist_x)
+    var tile_y = tile.y + sign(dist_y)
+    if tile_x >= 0 and tile_x < size.x:
+      var new_tile = IntVec2.new(tile_x, tile.y)
+      tiles.append([IntVec2.new(tile_x, tile.y)])
+      
+    
   func generate_vectors():
     var corners = [0, size.x - 1, (size.x - 1) * size.y, size.x * size.y - 1]
     for point in corners:
