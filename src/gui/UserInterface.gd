@@ -32,9 +32,9 @@ func is_mouse_on_gui() -> bool:
 func setup_unit_details(stat_list : Dictionary, unit_portrait : Texture = null):
   unit_details_panel.activate_unit_details(stat_list)
   if unit_portrait == null:
-    unit_details_panel.deactivate_portrait()
+	unit_details_panel.deactivate_portrait()
   else:
-    unit_details_panel.activate_portrait(unit_portrait)
+	unit_details_panel.activate_portrait(unit_portrait)
 
 func reset_unit_details():
   unit_details_panel.deactivate_unit_details()
