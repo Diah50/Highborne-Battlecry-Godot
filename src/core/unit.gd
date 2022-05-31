@@ -132,8 +132,8 @@ func avoid_collision():
   var vector = Vector2.ZERO
 <<<<<<< Updated upstream
   for result in space.intersect_shape(query):
-    var body = result["collider"]
-    vector += position - body.position
+	var body = result["collider"]
+	vector += position - body.position
 =======
   for body in area2d.get_overlapping_bodies():
 	vector += position - body.position

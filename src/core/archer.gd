@@ -14,15 +14,15 @@ func _ready():
 
 func handle_hit(projectile_sprite : Sprite):
   if target != null:
-    var arrow = projectile.instance()
-    arrow.prepare(projectile_sprite.texture, self, 700, target.position)
-    get_parent().add_child(arrow)
+	var arrow = projectile.instance()
+	arrow.prepare(projectile_sprite.texture, self, 700, target.position)
+	get_parent().add_child(arrow)
 
 func play_animation(anim_name):
   $BodyWithAnimation.set_direction(velocity.normalized())
   if "attack" in anim_name:
-    $BodyWithAnimation.set_animation("bow")
+	$BodyWithAnimation.set_animation("bow")
   elif "walk" in anim_name:
-    $BodyWithAnimation.set_animation("walk")
+	$BodyWithAnimation.set_animation("walk")
   elif "death" == anim_name:
-    $BodyWithAnimation.set_animation("death")
+	$BodyWithAnimation.set_animation("death")
